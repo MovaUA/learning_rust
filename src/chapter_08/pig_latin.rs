@@ -163,16 +163,15 @@ fn convert_word_to_pig_latin(word: &str, first_char: Char) -> String {
 
 #[cfg(test)]
 mod test {
-    use crate::pig_latin;
-    use crate::pig_latin::{convert_word_to_pig_latin, Char};
+    use crate::chapter_08::pig_latin::{Char, convert_to_pig_latin, convert_word_to_pig_latin, get_word_boundaries, get_words};
 
     #[test]
-    fn convert_to_pig_latin() {
+    fn convert_to_pig_latin_non_empty_text() {
         // arrange
         let text = "Convert strings to pig latin. The first consonant of each word is moved to the end of the word and “ay” is added, so “first” becomes “irst-fay.” Words that start with a vowel have “hay” added to the end instead (“apple” becomes “apple-hay”). Keep in mind the details about UTF-8 encoding!";
 
         // act
-        let actual = pig_latin::convert_to_pig_latin(text);
+        let actual = convert_to_pig_latin(text);
 
         // assert
         let expected = "onvert-Cay trings-say o-tay ig-pay atin-lay. he-Tay irst-fay onsonant-cay of-hay each-hay ord-way is-hay oved-may o-tay he-tay end-hay of-hay he-tay ord-way and-hay “ay-hay” is-hay added-hay, o-say “irst-fay” ecomes-bay “irst-hay-ay-fay.” ords-Way hat-tay tart-say ith-way a-hay owel-vay ave-hay “ay-hay” added-hay o-tay he-tay end-hay instead-hay (“apple-hay” ecomes-bay “apple-hay-ay-hay”). eep-Kay in-hay ind-may he-tay etails-day about-hay UTF-hay-8 encoding-hay!";
@@ -180,12 +179,12 @@ mod test {
     }
 
     #[test]
-    fn convert_to_pig_latin_empty() {
+    fn convert_to_pig_latin_empty_text() {
         // arrange
         let text = "";
 
         // act
-        let actual = pig_latin::convert_to_pig_latin(text);
+        let actual = convert_to_pig_latin(text);
 
         // assert
         let expected = "";
@@ -193,12 +192,12 @@ mod test {
     }
 
     #[test]
-    fn get_words() {
+    fn get_words_non_empty_text() {
         // arrange
         let text = "hello, world!";
 
         // act
-        let actual = pig_latin::get_words(text);
+        let actual = get_words(text);
 
         // assert
         let expected = vec!["hello", ", ", "world", "!"];
@@ -206,12 +205,12 @@ mod test {
     }
 
     #[test]
-    fn get_words_empty() {
+    fn get_words_empty_text() {
         // arrange
         let text = "";
 
         // act
-        let actual = pig_latin::get_words(text);
+        let actual = get_words(text);
 
         // assert
         let expected = vec![""];
@@ -219,7 +218,7 @@ mod test {
     }
 
     #[test]
-    fn get_word_boundaries() {
+    fn get_word_boundaries_non_empty_text() {
         // arrange
 
         // 0123456789
@@ -228,19 +227,19 @@ mod test {
         let text = "hi, there!";
 
         // act
-        let actual = pig_latin::get_word_boundaries(text);
+        let actual = get_word_boundaries(text);
 
         // assert
         assert_eq!(actual, vec![2, 4, 9], "the text was:\n{}", text);
     }
 
     #[test]
-    fn get_word_boundaries_empty() {
+    fn get_word_boundaries_empty_text() {
         // arrange
         let text = "";
 
         // act
-        let actual = pig_latin::get_word_boundaries(text);
+        let actual = get_word_boundaries(text);
 
         // assert
         assert_eq!(actual, vec![], "the text was:\n{}", text);

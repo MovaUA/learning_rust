@@ -1,5 +1,4 @@
-mod median;
-mod pig_latin;
+mod chapter_08;
 
 fn main() {
     // Given a list of integers,
@@ -8,11 +7,11 @@ fn main() {
     // and mode (the value that occurs most often; a hash map will be helpful here) of the list.
     let empty: Vec<i32> = vec![];
 
-    do_the_job(&empty);
-    do_the_job(&vec![1]);
-    do_the_job(&vec![5, 3, 4]);
-    do_the_job(&vec![1, 2, 3, 2]);
-    do_the_job(&vec![1, 2, 1]);
+    print_median_and_mode(&empty);
+    print_median_and_mode(&vec![1]);
+    print_median_and_mode(&vec![5, 3, 4]);
+    print_median_and_mode(&vec![1, 2, 3, 2]);
+    print_median_and_mode(&vec![1, 2, 1]);
 
 
     // Convert strings to pig latin.
@@ -22,7 +21,7 @@ fn main() {
     // Keep in mind the details about UTF-8 encoding!
 
     let original_text = "Hello, amazing world!";
-    let pig_latin_text = pig_latin::convert_to_pig_latin(original_text);
+    let pig_latin_text = chapter_08::convert_to_pig_latin(original_text);
     println!(
         "origin text:\n{}\npig latin:\n{}",
         original_text, pig_latin_text
@@ -30,11 +29,11 @@ fn main() {
 }
 
 
-fn do_the_job(v: &[i32]) {
+fn print_median_and_mode(v: &[i32]) {
     println!("{:?}", v);
 
-    println!("median: {:?}", median::median(&v));
-    println!("mode: {:?}", median::mode(&v));
+    println!("median: {:?}", chapter_08::get_median(&v));
+    println!("mode: {:?}", chapter_08::get_mode(&v));
 
     println!()
 }
