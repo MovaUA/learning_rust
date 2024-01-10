@@ -107,21 +107,12 @@ const CHARS: phf::Map<char, Char> = phf_map! {
     'Z'=> Char::Consonant(),
 };
 
-#[derive(Copy, Clone)]
-struct CharIndex {
-    index: usize,
-    char: char,
-    token: Token,
-}
-
 fn get_words(text: &str) -> Vec<&str> {
     let mut words = Vec::with_capacity(text.len() / AVERAGE_BYTES_PER_WORD);
 
-    let mut iter = get_word_boundaries(text).into_iter();
-
     let mut prev_index = 0;
 
-    for curr_index in iter {
+    for curr_index in get_word_boundaries(text).into_iter() {
         let word = &text[prev_index..curr_index];
         words.push(word);
         prev_index = curr_index;
